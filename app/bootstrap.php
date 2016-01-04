@@ -1,12 +1,9 @@
 <?php
 
-function class_autoload($class_name) {
-  $file = __DIR__.'/core/'.$class_name.'.php';
-  if( file_exists($file) == false )
-    return false;
-  require_once ($file);
-}
+require_once __DIR__.'/autoloader.php';
+require_once __DIR__.'/config.php';
 
-spl_autoload_register('class_autoload');
+use StudentList\Core\Route as Route;
 
-Route::start();
+Route::run();
+
