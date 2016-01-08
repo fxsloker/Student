@@ -11,8 +11,10 @@ class Router {
         $routes = explode('/', $this->getURI());
 
         if ( !empty($routes[1]) ) {
-            $controllerName = $routes[1]."Controller";
+            $controllerName = $routes[1];
         }
+
+        $controllerName = $controllerName."Controller";
 
         if (!empty($routes[2])) {
             $action = $routes[2];
@@ -22,7 +24,7 @@ class Router {
         $contollerPath = __DIR__."/Controllers/".$controllerFile.".php";
 
         if (file_exists($contollerPath)) {
-            require_once $controllerName;
+            require_once $controllerPath;
         }
 
         $controller = new $controllerName;
