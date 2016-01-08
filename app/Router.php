@@ -1,9 +1,10 @@
 <?php
 
 namespace StudentList;
-
+use StudentList\Controllers;
 class Router {
 
+   
     public function run() {
         $controllerName = "Front";
         $action = "index";
@@ -14,17 +15,16 @@ class Router {
             $controllerName = $routes[1];
         }
 
-        $controllerName = ucfirst($controllerName)."Controller";
+        $controllerName =  __NAMESPACE__ . '\\Controllers\\'.ucfirst($controllerName)."Controller";
 
         if (!empty($routes[2])) {
             $action = $routes[2];
         }
-
         $controllerFile = $controllerName.".php";
-        $contollerPath = __DIR__."/Controllers/".$controllerFile.".php";
+        $controllerPath = __DIR__."/Controllers/".$controllerFile;
 
-        if (file_exists($contollerPath)) {
-            require_once $controllerPath;
+        if (file_exists($controllerPath)) {
+            //require_once $controllerPath;
         }
 
         $controller = new $controllerName;
