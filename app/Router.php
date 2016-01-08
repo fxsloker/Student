@@ -14,13 +14,13 @@ class Router {
             $controllerName = $routes[1];
         }
 
-        $controllerName = $controllerName."Controller";
+        $controllerName = ucfirst($controllerName)."Controller";
 
         if (!empty($routes[2])) {
             $action = $routes[2];
         }
 
-        $controllerFile = ucfirst($controllerName).".php";
+        $controllerFile = $controllerName.".php";
         $contollerPath = __DIR__."/Controllers/".$controllerFile.".php";
 
         if (file_exists($contollerPath)) {
