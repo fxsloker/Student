@@ -25,7 +25,7 @@ class Router {
             require_once $controllerName;
         }
 
-        $controller = new $controllerFile;
+        $controller = new $controllerName;
 
         if (method_exists($controller, $action)) {
             $controller->$action();
