@@ -5,7 +5,18 @@ namespace StudentList\Controllers;
 class FrontController {
     
     public function index() {
-        var_dump("good");
+        
     }
-    
+
+    public function create() {
+
+    }
+
+    public function update() {
+        
+    }
+
+    public function edit() {
+
+    }
 }

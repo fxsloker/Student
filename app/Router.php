@@ -1,7 +1,6 @@
 <?php
 
 namespace StudentList;
-use StudentList\Controllers;
 class Router {
 
    
@@ -15,23 +14,21 @@ class Router {
             $controllerName = $routes[1];
         }
 
-        $controllerName =  __NAMESPACE__ . '\\Controllers\\'.ucfirst($controllerName)."Controller";
+        $controllerName =  __NAMESPACE__ . '\\Controllers\\'.ucfirst(strtolower($controllerName))."Controller";
 
         if (!empty($routes[2])) {
             $action = $routes[2];
         }
-        $controllerFile = $controllerName.".php";
-        $controllerPath = __DIR__."/Controllers/".$controllerFile;
 
-        if (file_exists($controllerPath)) {
-            //require_once $controllerPath;
+        if (class_exists($controllerName) && method_exists($controllerName, $action)) {
+            $controller = new $controllerName;
+        } else {
+            header('HTTP/1.0 404 Not Found');
+            echo "<h1>404 Not Found</h1>";
+            echo "The page that you have requested could not be found.";
+            exit();
         }
 
-        $controller = new $controllerName;
-
-        if (method_exists($controller, $action)) {
-            $controller->$action();
-        } 
     }
 
     public function getURI() {
