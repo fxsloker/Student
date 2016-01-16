@@ -1,11 +1,11 @@
 <?php
-
 namespace StudentList;
+
 class Router {
 
    
     public function run() {
-        $controllerName = "Front";
+        $controllerName = "Base";
         $action = "index";
 
         $routes = explode('/', $this->getURI());
@@ -14,26 +14,33 @@ class Router {
             $controllerName = $routes[1];
         }
 
-        $controllerName =  __NAMESPACE__ . '\\Controllers\\'.ucfirst(strtolower($controllerName))."Controller";
+        $controllerName = sprintf('%s\%s\%s%s', __NAMESPACE__, 'Controllers', ucfirst(strtolower($controllerName)), 'Controller');
 
         if (!empty($routes[2])) {
             $action = $routes[2];
         }
+        $controller = new $controllerName;
+        $action = $action."Action";
 
         if (class_exists($controllerName) && method_exists($controllerName, $action)) {
             $controller = new $controllerName;
+            $controller->$action();
         } else {
-            header('HTTP/1.0 404 Not Found');
-            echo "<h1>404 Not Found</h1>";
-            echo "The page that you have requested could not be found.";
-            exit();
+            $this->get404();
         }
 
     }
 
     public function getURI() {
-        if (!empty($_SERVER['REQUEST_URI'])) {
-            return $_SERVER['REQUEST_URI'];
-        }
+        return $_SERVER['REQUEST_URI'];
     }    
+
+    public function get404() {
+        header('HTTP/1.0 404 Not Found');
+        echo "<h1>404 Not Found</h1>";
+        echo "The page that you have requested could not be found.";
+        exit();        
+    }
+
+
 }

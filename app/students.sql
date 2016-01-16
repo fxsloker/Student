@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 10, 2016 at 04:24 PM
+-- Generation Time: Jan 16, 2016 at 01:22 PM
 -- Server version: 5.5.46-0ubuntu0.14.04.2
 -- PHP Version: 5.5.9-1ubuntu4.14
 
@@ -30,12 +30,12 @@ CREATE TABLE IF NOT EXISTS `students` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
-  `sex` enum('male','female') NOT NULL,
-  `groupNumber` char(3) NOT NULL,
+  `sex` enum('0','1') NOT NULL,
+  `groupNumber` char(5) NOT NULL,
   `email` varchar(255) NOT NULL,
   `examMark` tinyint(4) NOT NULL,
-  `year` tinyint(4) NOT NULL,
-  `local` enum('yes','no') NOT NULL,
+  `year` year(4) NOT NULL,
+  `local` enum('0','1') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

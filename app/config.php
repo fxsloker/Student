@@ -1,11 +1,6 @@
 <?php
-
-return array(
-    'db' => array(
-        'dsn' => 'localhost',
-        'database' => 'student',
-        'username' => 'root',
-        'password' => '',
-        'prefix' => 'st_'
-    )
-);
+$development = true;
+$dsn = 'localhost';
+$database = 'studentList';
+$username = 'student';
+$password = 'webmaster123456';
