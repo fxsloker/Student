@@ -7,13 +7,13 @@ class View {
     public $footer;
 
     public function __construct() {
-        $this->header = __DIR__.'/templates/header.php';
-        $this->footer = __DIR__.'/templates/footer.php';
+        $this->header = __DIR__.'/_templates/header.php';
+        $this->footer = __DIR__.'/_templates/footer.php';
     }
 
-    public function render($tmpl, $params) {
+    public function render($tmpl, array $params = null) {
         require_once $this->header;
-        require_once __DIR__.'/templates/'.$tmpl.'.php';
+        require_once __DIR__.'/'.$tmpl.'/index.php';
         require_once $this->footer;
     }
 }
